@@ -10,7 +10,25 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/api': {                 // 匹配接口前缀
+        target: 'targetHost',   // 后端服务地址
+        logLevel: 'debug',
+        xfwd: true,
+        changeOrigin: true,
+      },
+  
+      // 配置 sso 转发
+      '/ssoagentlogin': {
+        target: 'http://10.0.80.101:8089/',   // 填写 项目中配置了 sso 服务的后端地址
+        logLevel: 'debug',
+        xfwd: true,
+        changeOrigin: true,
+        cookieDomainRewrite: {
+          '*': '',
+        },
+      },
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
@@ -23,7 +41,7 @@ module.exports = {
     // Use Eslint Loader?
     // If true, your code will be linted during bundling and
     // linting errors and warnings will be shown in the console.
-    useEslint: true,
+    useEslint: false,
     // If true, eslint errors and warnings will also be shown in the error overlay
     // in the browser.
     showEslintErrorsInOverlay: false,

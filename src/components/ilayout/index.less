@@ -1,0 +1,189 @@
+@import "./custom.less";
+
+.sim-layout-wrapper {
+
+  min-height: 100vh;
+
+  .logo-wrapper {
+    font-size: 20px;
+    font-weight: bold;
+    background-color: @header-logo-bg-color;
+    padding: 16px 24px;
+    color: #fff;
+    height: @layout-header-height;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    img {
+      width: 32px;
+    }
+
+    .logo-text {
+      margin-left: 12px;
+    }
+  }
+
+  .show {
+    height: auto;
+    opacity: 1;
+    visibility: visible;
+    transition: all .2s ease .2s;
+  }
+
+  .hide {
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    overflow: hidden;
+  }
+
+  .ivu-menu-dark {
+    background: @menu-dark-title;
+
+    .ivu-menu-opened.ivu-menu-submenu {
+      background: @dark-content-bg-color;
+    }
+  }
+
+  .sim-layout-sidebar-slot .ivu-menu-dark.ivu-menu-horizontal .ivu-menu-item-active, .ivu-menu-dark.ivu-menu-horizontal .ivu-menu-submenu-active, .ivu-menu-dark.ivu-menu-horizontal .ivu-menu-item:hover, .ivu-menu-dark.ivu-menu-horizontal .ivu-menu-submenu:hover {
+    background-color: @menu-dark-active-bg;
+  }
+
+  .ivu-menu-dark.ivu-menu-horizontal .ivu-menu-item-active, .ivu-menu-dark.ivu-menu-horizontal .ivu-menu-submenu-active, .ivu-menu-dark.ivu-menu-horizontal .ivu-menu-item:hover, .ivu-menu-dark.ivu-menu-horizontal .ivu-menu-submenu:hover {
+    background-color: @menu-dark-active-bg;
+  }
+
+  .ivu-menu-dark.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu), .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title-active:not(.ivu-menu-submenu) {
+    color: #ffffff;
+  }
+
+  .ivu-menu-horizontal {
+    height: @layout-header-height;
+    line-height: @layout-header-height;
+  }
+
+  .sim-layout-sidebar-fixed {
+    overflow-y: visible;
+    .ivu-layout-sider-children {
+      overflow-y: auto;
+    }
+    .ivu-layout-sider-children::-webkit-scrollbar {display:none}
+  }
+
+  .ivu-menu-light.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu) {
+    background-color: @menu-vertical-select-bg-color;
+  }
+
+  .sim-layout-header-fixed {
+    position: fixed;
+  }
+
+  .sim-layout-sidebar-fixed {
+    position: fixed;
+    z-index: 99;
+    padding-top: @layout-header-height;
+    top: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  .sim-layout-main-content-fixed {
+    padding-top: @layout-header-height;
+  }
+
+  .sim-layout-sidebar-wrapper .ivu-menu {
+    position: unset;
+  }
+
+  .ivu-layout-sider .logo-text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    vertical-align: bottom;
+    transition: all .2s ease .2s;
+    width: 120px;
+  }
+
+  .ivu-layout-sider-collapsed {
+    transition: all .2s ease;
+    .logo-text, .ivu-menu-item span, .ivu-menu-submenu span {
+      width: 0;
+      transition: all .2s ease;
+      overflow: hidden;
+    }
+  }
+
+  .ivu-menu-item {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .ivu-layout-sider-collapsed .ivu-menu-item i {
+    transition: all .2s;
+    font-size: 20px;
+  }
+
+  .ivu-layout-sider-collapsed .ivu-menu-submenu i {
+    transition: all .2s;
+    font-size: 20px;
+  }
+
+  .ivu-menu-item span, .ivu-menu-submenu span {
+    display: inline-block;
+    overflow: hidden;
+    max-width: 69px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: bottom;
+    transition: all .2s;
+  }
+
+  .ivu-menu-item, .ivu-menu-submenu {
+    transition: all .2s;
+  }
+
+  .menu-item span {
+    display: inline-block;
+    overflow: hidden;
+    max-width: 69px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: bottom;
+    transition: all .2s ease .2s;
+  }
+
+  .menu-item i {
+    transform: translateX(0px);
+    transition: font-size .2s ease, transform .2s ease;
+    vertical-align: middle;
+    font-size: 16px;
+  }
+
+  .collapsed-menu {
+
+    span {
+      width: 0;
+      transition: all .2s ease;
+    }
+
+    i {
+      transform: translateX(5px);
+      transition: font-size .2s ease .2s, transform .2s ease .2s;
+      vertical-align: middle;
+      font-size: 22px;
+    }
+  }
+
+  .sim-layout-footer-inner-fe-support {
+    text-align: center;
+    a {
+      color: unset;
+    }
+    white-space: nowrap;
+  }
+  .sim-layout-header-headerRight-slot {
+    min-width: 76px;
+  }
+}

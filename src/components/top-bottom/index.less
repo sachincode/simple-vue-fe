@@ -1,0 +1,131 @@
+@import "../ilayout/custom.less";
+
+.sim-layout-wrapper.sim-layout-top-bottom-wrapper {
+
+  .sim-layout-content-wrapper {
+    margin: 16px;
+  }
+
+  .sim-layout-collapse-trigger {
+    width: 100%;
+    height: 49px;
+    background-color: #eee;
+    cursor: pointer;
+
+    img {
+      transition: all .2s ease;
+      width: 18px;
+
+      &.collapse-trigger-shou {
+        margin: 18px 31px;
+      } 
+
+      &.collapse-trigger-zhan {
+        margin: 18px 91px;
+      } 
+    }
+  }
+
+  .sim-layout-top-bottom-main-content-wrapper {
+    transition: padding .2s;
+  }
+
+  .sim-layout-header-headerRight {
+    margin-left: auto;
+  }
+
+  .sim-layout-sidebar-wrapper.ivu-layout-sider {
+    background-color: #fff;
+  }
+
+  .sim-layout-header-menu-headerRight-wrapper {
+    padding-right: 24px;
+    position: absolute;
+    left: 200px;
+    right: 0;
+    top: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .sim-layout-user-panel {
+      min-width: 76px;
+    }
+  }
+
+  &.dark {
+    color: #fff;
+    .sim-layout-sidebar-wrapper {
+      background-color: @dark-theme-dark-blue-color;
+
+      &.ivu-layout-sider-collapsed {
+        .sim-layout-drop-down-menu-wrapper {
+          .sim-layout-dropdown-menu {
+            color: #9099A1;
+
+            &:hover {
+              color: #FAFDFF;
+              background-color: unset;
+            }
+
+            &.selected {
+              color: #FAFDFF;
+              background-color: @dark-theme-light-blue-color;
+            }
+          }
+        }
+      }
+
+      .ivu-menu-dark.ivu-menu-vertical .ivu-menu-item:hover, .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title:hover {
+        background-color: unset;
+      }
+
+      .ivu-menu-submenu.ivu-menu-item-active.ivu-menu-opened.ivu-menu-child-item-active {
+        background-color: unset;
+      }
+
+      .ivu-menu-dark .ivu-menu-opened {
+        background-color: unset;
+      }
+
+      .ivu-menu-dark.ivu-menu-vertical .ivu-menu-opened .ivu-menu-submenu-title {
+        background-color: unset;
+      }
+
+      .ivu-menu-item.ivu-menu-item-active.ivu-menu-item-selected {
+        background-color: @dark-content-bg-color !important;
+        border-right: none;
+      }
+    }
+
+    .sim-layout-header-wrapper {
+      background-color: @dark-theme-blue-color;
+
+      .sim-layout-header-menu.ivu-menu.ivu-menu-dark.ivu-menu-horizontal {
+        background-color: @dark-theme-blue-color;
+      }
+    }
+    .logo-wrapper {
+      background-color: @dark-theme-blue-color;
+    }
+
+    .ivu-layout.sim-layout-top-bottom-main-content-wrapper {
+      background-color: @dark-content-bg-color;
+
+      .ivu-breadcrumb.sim-layout-breadcrumb {
+        border-bottom-color: #263039;
+        a.ivu-breadcrumb-item-link {
+          color: #ddd;
+        }
+      }
+      .ivu-breadcrumb.sim-layout-breadcrumb > span:last-child {
+        color: #f1f1f1;
+      }
+    }
+    .sim-layout-footer-wrapper.ivu-layout-footer {
+      background-color: unset;
+      color: #fff;
+    }
+  }
+}
