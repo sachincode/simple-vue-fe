@@ -14,7 +14,7 @@
         <template v-for="(item) in headerMenuData">
           
           <Submenu v-if="isArray(item.children)"
-                   :name="item.uri || item.describe"
+                   :name="item.code"
                    :key="item.uri || item.path"
           >
             <template slot="title">
@@ -56,7 +56,7 @@
                    :key="item.uri || item.path"
           >
             <MenuItem
-                :name="item.uri || item.path"
+                :name="item.code"
                 :key="item.uri || item.path"
             >
               {{item.describe}}

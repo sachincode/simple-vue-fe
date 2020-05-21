@@ -21,7 +21,7 @@ const router = new VueRouter({
 });
 
 async function addRouters() {
-  const data = await getMenuRouterData(store);
+  const data = await getMenuRouterData(store, '***');
   router.addRoutes(data.routes);
 }
 

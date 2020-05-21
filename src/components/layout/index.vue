@@ -20,7 +20,7 @@
   >
     <div slot="headerRight">
       <User v-if="user && user.account" class="sim-layout-user-panel"
-            :avatar="`http://auth.u51-inc.com/avatar/${user.account}`"
+            :avatar="`https://himg.bdimg.com/sys/portraitn/item/7cb3b2bfc2e4dfbad1fdc1e3ca08?id=${user.account}`"
             :list="['退出登录']"
             :userNameStyle="{color: '#495060',cursor: 'pointer'}"
             :userName="user.name"
@@ -84,15 +84,13 @@
     methods: {
       sidebarMenuSelect(name) {
       },
-      headerMenuSelect(name) {
+      async headerMenuSelect(name) {
+        const data = await getMenuRouterData(this.$store, name);
+        this.sidebarMenuData = data.sidebarMenuData;
       },
       async dropDownClick(name) {
-        console.log(name);
-        console.log(window.location);
-        console.log(config);
         if (name === '退出登录' && config.useSSO) {
           const data = await logout.get();
-          console.log(data);
 
           if (config.customLogin) {
             window.location.reload();

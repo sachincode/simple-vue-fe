@@ -8,7 +8,7 @@ import ParentPage from './pages/parent-pages/index.vue';
 
 let useSSOMenu = false; // 是否需要使用 SSO 菜单
 
-async function getMenuRouterData(store) {
+async function getMenuRouterData(store, code) {
 
   // 自定义 顶部菜单
   const headerMenuData = [
@@ -39,41 +39,90 @@ async function getMenuRouterData(store) {
    * 2. 如果菜单不依赖 SSO 则是 自定义菜单，请将 useSSOMenu 置为 false
    * @type {Array}
    */
-  const customSidebarMenuRouters = [
-    {
-      path: '',
-      name: 'first-menu',
-      describe: '一级菜单',
-      icon: 'ios-flower',
-      component: ParentPage,
-      children: [
-        {
-          name: 'child-menu',
-          path: '/child-menu',
-          describe: '二级菜单',
-          component: HomePage,
-        },
-      ],
-    },
-    {
-      path: '/404',
-      name: '404',
-      describe: '404',
-      icon: 'ios-recording',
-      component: NotFoundPage,
-    },
-    {
-      path: '*',
-      component: NotFoundPage,
-      hide: true,
-    },
-  ];
+  const customSidebarMenuRouters = {
+    'menu1-1': [
+      {
+        path: '',
+        name: 'first-menu',
+        describe: '一级菜单',
+        icon: 'ios-flower',
+        component: ParentPage,
+        children: [
+          {
+            name: 'child-menu',
+            path: '/child-menu',
+            describe: '二级菜单',
+            component: HomePage,
+          },
+        ],
+      },
+      {
+        path: '/404',
+        name: '404',
+        describe: '404',
+        icon: 'ios-recording',
+        component: NotFoundPage,
+      },
+      {
+        path: '*',
+        component: NotFoundPage,
+        hide: true,
+      },
+    ],
+    'menu1-2': [
+      {
+        path: '',
+        name: 'first-menu2',
+        describe: '一级菜单2',
+        icon: 'ios-flower',
+        component: ParentPage,
+        children: [
+          {
+            name: 'child-menu2',
+            path: '/child-menu2',
+            describe: '二级菜单2',
+            component: HomePage,
+          },
+        ],
+      },
+      {
+        path: '*',
+        component: NotFoundPage,
+        hide: true,
+      },
+    ]
+  }
+
+  function getSidebarMenu(code) {
+    if (code === '***') {
+      let all = [];
+      headerMenuData.forEach((item) => {
+        all = all.concat(customSidebarMenuRouters[item.code] || []);
+      });
+      return all;
+    }
+    if (code == undefined) {
+      let dcode = code;
+      headerMenuData.forEach((item) => {
+        if (item.select) {
+          dcode = item.code;
+        }
+      });
+      if (dcode == undefined) {
+        headerMenuData[0].select = true;
+        dcode = headerMenuData[0].code;
+      }
+      return customSidebarMenuRouters[dcode] || [];
+    } else {
+      return customSidebarMenuRouters[code] || [];
+    }
+  }
 
   if (!config.useSSO) {
     return {
       headerMenuData,
-      sidebarMenuData: customSidebarMenuRouters,
-      routes: customSidebarMenuRouters,
+      sidebarMenuData: getSidebarMenu(code),
+      routes: getSidebarMenu(code),
     };
   }
 
@@ -120,12 +169,7 @@ async function getMenuRouterData(store) {
     '/menue2',
     '/menue2.3',
     '/menue2.1.1',
-    '/menue3',
-    '/demopage',
-    '/menue1.3',
-    '/menue4',
-    '/menue1.2',
-    'menue2-menue']);
+    '/menue3']);
   factory.generateRoutes(ssoRouterComponent);
 
 
@@ -133,15 +177,15 @@ async function getMenuRouterData(store) {
     return {
       user: store.state.user,
       headerMenuData: headerMenuData,
-      sidebarMenuData: factory.data.concat(customSidebarMenuRouters),
-      routes: factory.routes.concat(customSidebarMenuRouters),
+      sidebarMenuData: factory.data.concat(getSidebarMenu(code)),
+      routes: factory.routes.concat(getSidebarMenu(code)),
     };
   } else {
     return {
       user: store.state.user,
       headerMenuData: headerMenuData,
-      sidebarMenuData: customSidebarMenuRouters,
-      routes: customSidebarMenuRouters,
+      sidebarMenuData: getSidebarMenu(code),
+      routes: getSidebarMenu(code),
     };
   }
 
