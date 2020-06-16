@@ -10,9 +10,14 @@ import store from './store/index';
 import config from './config';
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
+import { Menu, Submenu, MenuItem, MenuItemGroup } from 'element-ui';
 
 Vue.use(VueRouter);
 Vue.use(iView);
+Vue.component(Menu.name, Menu);
+Vue.component(Submenu.name, Submenu);
+Vue.component(MenuItem.name, MenuItem);
+Vue.component(MenuItemGroup.name, MenuItemGroup);
 
 Vue.prototype.$store = store;
 

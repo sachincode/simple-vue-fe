@@ -6,6 +6,7 @@
                      headerTheme="dark"
                      :class="headerClass"
                      :sidebarWidth="sidebarWidth"
+                     type="top-bottom"
     >
       <div v-if="$slots.headerRight" slot="headerRight" class="sim-layout-header-headerRight">
         <slot name="headerRight"></slot>
@@ -21,7 +22,7 @@
     </HeaderComponent>
     
     <Layout>
-      <Sider :class="sidebarClass"
+      <!-- <Sider :class="sidebarClass"
              v-if="!hideSidebar && sidebarPosition !== 'right'"
              :style="sidebarStyle"
              :width="sidebarWidth"
@@ -65,7 +66,7 @@
                      ref="sidebarMenu"
         >
         </sidebarMenu>
-      </Sider>
+      </Sider> -->
       
       <Layout :class="mainContentClass" :style="mainContentStyle">
         <Content class="sim-layout-content-wrapper"
@@ -89,7 +90,7 @@
           <slot v-else name="footer"></slot>
         </Footer>
       </Layout>
-      <Sider :class="sidebarClass"
+      <!-- <Sider :class="sidebarClass"
              v-if="!hideSidebar && sidebarPosition === 'right'"
              :style="sidebarStyle"
              :width="sidebarWidth"
@@ -116,7 +117,7 @@
         </sidebarMenu>
         <slot name="sidebar"></slot>
       
-      </Sider>
+      </Sider> -->
     </Layout>
   </Layout>
 </template>
@@ -283,7 +284,7 @@
           return;
         }
         this.mainContentStyle = Object.assign({}, this.contentStyle, {
-          paddingLeft: `${this.innerSidebarCollapsed ? this.sidebarCollapseWidth : this.sidebarWidth}px`,
+          paddingLeft: '0px',
         });
       },
       changeCollapseEvent() {

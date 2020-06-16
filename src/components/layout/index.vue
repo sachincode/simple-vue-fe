@@ -1,5 +1,5 @@
 <template>
-  <Layout type="left-right"
+  <Layout :type="type"
           :fixed="true"
           :hideHeader="hideHeader"
           :hideSidebar="hideSidebar"
@@ -33,7 +33,11 @@
       <router-view></router-view>
     </div>
     
-    <div slot="sidebar" class="logo-wrapper">
+    <div slot="sidebar" class="logo-wrapper" v-if="type==='left-right'">
+      <img :src="logo" alt="logo" >
+      <span class="logo-text">sim</span>
+    </div>
+    <div slot="header" class="logo-wrapper" style="background-color: #001529;" v-else>
       <img :src="logo" alt="logo" >
       <span class="logo-text">sim</span>
     </div>
@@ -60,7 +64,7 @@
         Avatar,
         user: {},
         logo,
-        type: 'top-bottom',
+        type: 'left-right', // left-right 或 top-bottom
         hideHeader: false,
         hideFooter: true,
         hideSidebar: false,
@@ -76,7 +80,7 @@
       };
     },
     async created() {
-      const data = await getMenuRouterData(this.$store);
+      const data = await getMenuRouterData(this.$store, this.type==='left-right' ? undefined : '###');
       this.sidebarMenuData = data.sidebarMenuData;
       this.headerMenuData = data.headerMenuData;
       this.user = data.user;
@@ -85,8 +89,10 @@
       sidebarMenuSelect(name) {
       },
       async headerMenuSelect(name) {
-        const data = await getMenuRouterData(this.$store, name);
-        this.sidebarMenuData = data.sidebarMenuData;
+        if (this.type==='left-right') {
+          const data = await getMenuRouterData(this.$store, name);
+          this.sidebarMenuData = data.sidebarMenuData;
+        }
       },
       async dropDownClick(name) {
         if (name === '退出登录' && config.useSSO) {

@@ -9,61 +9,50 @@
             :theme="headerTheme"
             :active-name="headerActiveItem"
             @on-select="onSelect"
-            v-if="headerMenuData && headerMenuData.length > 0"
+            v-if="headerMenuData && headerMenuData.length > 0 && type==='left-right'"
       >
         <template v-for="(item) in headerMenuData">
-          
-          <Submenu v-if="isArray(item.children)"
-                   :name="item.code"
-                   :key="item.uri || item.path"
-          >
+          <Submenu v-if="isArray(item.children)" :name="item.code" :key="item.uri || item.path">
             <template slot="title">
               {{item.describe}}
             </template>
             
-            <template v-for="child in item.children">
-              
-               <MenuGroup v-if="child.isGroup && isArray(child.children)"
-                         :title="child.title"
-                         :key="child.uri || item.path"
-              >
-                <sim-link :item="childItem"
-                >
-                  <MenuItem v-for="childItem in child.children"
-                            :name="childItem.uri || item.path"
-                            :key="childItem.uri || item.path"
-                  >
+            <!-- <template v-for="child in item.children">
+               <MenuGroup v-if="child.isGroup && isArray(child.children)" :title="child.title"
+                         :key="child.uri || item.path">
+                <sim-link :item="childItem">
+                  <MenuItem v-for="childItem in child.children" :name="childItem.uri || childItem.path"
+                            :key="childItem.uri || childItem.path">
                     {{childItem.describe}}
                   </MenuItem>
                 </sim-link>
-              
               </MenuGroup>
-              <sim-link :item="child"
-                       :key="child.uri || item.path"
-                       v-else
-              >
-                <MenuItem :name="child.uri || item.path"
-                          :key="child.uri || item.path"
-                >
+              <sim-link :item="child" :key="child.uri || item.path" v-else>
+                <MenuItem :name="child.uri || child.path" :key="child.uri || child.path">
                   {{child.describe}}
                 </MenuItem>
               </sim-link>
-            </template>
+            </template> -->
+            
           </Submenu>
           
-          <sim-link v-else
-                   :item="item"
-                   :key="item.uri || item.path"
-          >
-            <MenuItem
-                :name="item.code"
-                :key="item.uri || item.path"
-            >
+          <sim-link v-else :item="item" :key="item.uri || item.path">
+            <MenuItem :name="item.code" :key="item.uri || item.path">
               {{item.describe}}
             </MenuItem>
           </sim-link>
         </template>
       </Menu>
+      <el-menu  class="sim-layout-header-menu" mode="horizontal" :router="true"
+        @select="handleSelect" :default-active="headerActiveItem"
+        background-color="#001529" active-text-color="#409eff"
+        v-if="headerMenuData && headerMenuData.length > 0 && type==='top-bottom'"
+        >
+        <header-children-menu v-for="(item, index) in headerMenuData" v-if="!item.hide"
+          :data="item"
+          :index="'' + index"
+          :key="index" />
+      </el-menu>
       <slot name="headerRight"></slot>
     </div>
   </Header>
@@ -75,6 +64,7 @@
   import Link from '../link/index.vue';
   import EventBus from '../ilayout/bus';
   import {isArray} from '../../utils/utils';
+  import HeaderChildrenMenu from './children-menu.vue';
   // import './index.less';
 
   // const MenuItem = Menu.Item;
@@ -90,6 +80,7 @@
       // Submenu,
       // MenuGroup,
       'sim-link': Link,
+      HeaderChildrenMenu,
     },
     data() {
       return {
@@ -123,6 +114,10 @@
         type: String,
         default: 'dark',
       },
+      type: {
+        type: String,
+        default: 'top-bottom',
+      },
     },
     methods: {
       onSelect(name) {
@@ -144,6 +139,9 @@
 
         });
       },
+      handleSelect(key, keyPath) {
+        
+      }
     },
   };
 </script>

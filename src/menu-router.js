@@ -28,8 +28,10 @@ async function getMenuRouterData(store, code) {
     {
       code: 'menu1-3',
       describe: '顶部菜单三',
-      uri: '#3',
-      linkType: 'a-link',
+      // uri: '#3',
+      // linkType: 'a-link',
+      path: '/menu1-3',
+      component: TestPage,
     },
   ];
 
@@ -49,10 +51,33 @@ async function getMenuRouterData(store, code) {
         component: ParentPage,
         children: [
           {
-            name: 'child-menu',
-            path: '/child-menu',
+            name: 'child-menu11',
+            path: '/child-menu11',
             describe: '二级菜单',
             component: HomePage,
+            hide: false,
+            children: [
+              {
+                name: 'child-menu111',
+                path: '/child-menu111',
+                describe: '三级菜单',
+                component: HomePage,
+              },
+            ],
+          },
+          {
+            name: 'child-menu12',
+            path: '/child-menu12',
+            describe: '二级菜单',
+            component: HomePage,
+            children: [
+              {
+                name: 'child-menu121',
+                path: '/child-menu121',
+                describe: '三级菜单',
+                component: HomePage,
+              },
+            ],
           },
         ],
       },
@@ -62,11 +87,6 @@ async function getMenuRouterData(store, code) {
         describe: '404',
         icon: 'ios-recording',
         component: NotFoundPage,
-      },
-      {
-        path: '*',
-        component: NotFoundPage,
-        hide: true,
       },
     ],
     'menu1-2': [
@@ -85,20 +105,26 @@ async function getMenuRouterData(store, code) {
           },
         ],
       },
-      {
-        path: '*',
-        component: NotFoundPage,
-        hide: true,
-      },
     ]
   }
 
   function getSidebarMenu(code) {
-    if (code === '***') {
+    if (code === '***' || code === '###') {
       let all = [];
       headerMenuData.forEach((item) => {
         all = all.concat(customSidebarMenuRouters[item.code] || []);
+        if (item.path && item.component) {
+          all.push(item);
+        }
+        if (code === '###') {
+          item.children = customSidebarMenuRouters[item.code] || [];
+        }
       });
+      all = all.concat([{
+        path: '*',
+        component: NotFoundPage,
+        hide: true,
+      },])
       return all;
     }
     if (code == undefined) {

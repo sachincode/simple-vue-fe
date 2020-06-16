@@ -69,6 +69,10 @@
     },
     methods: {
       generateBreadData(data, parents) {
+        if (!data || data.length == 0 || this.$route.path === "/") {
+          this.breadData = [];
+          return;
+        }
 
         let currentRoute = '';
         if (this.$route && this.$route.matched) {

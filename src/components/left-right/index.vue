@@ -35,6 +35,7 @@
                        :headerMenuData="headerMenuData"
                        :sidebarWidth="sidebarWidth"
                        :headerTheme="theme"
+                       type="left-right"
       >
         <div class="collapse-trigger-wrapper"
              slot="collapse-trigger"
