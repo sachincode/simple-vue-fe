@@ -24,6 +24,7 @@ async function getMenuRouterData(store, code) {
       describe: '顶部菜单二',
       uri: '#2',
       linkType: 'a-link',
+      hide: false,
     },
     {
       code: 'menu1-3',
@@ -76,6 +77,7 @@ async function getMenuRouterData(store, code) {
                 path: '/child-menu121',
                 describe: '三级菜单',
                 component: HomePage,
+                hide: false,
               },
             ],
           },

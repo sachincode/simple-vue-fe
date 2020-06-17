@@ -1,8 +1,9 @@
-<template>
+<template >
   <el-submenu 
     v-if="data.children && data.children.length"
     :index="getUrl(data) || data.path"
     :key="index"
+    v-show="!data.hide"
     >
     <template slot="title">
       <span>{{data.describe}}</span>
@@ -14,7 +15,9 @@
   </el-submenu>
   <el-menu-item v-else
     :key="index"
-    :index="getUrl(data) || data.path">
+    :index="getUrl(data) || data.path"
+    v-show="!data.hide"
+    >
     <span>{{data.describe}}</span>
   </el-menu-item>
 </template>
