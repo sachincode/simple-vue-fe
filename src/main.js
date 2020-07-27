@@ -10,7 +10,7 @@ import store from './store/index';
 import config from './config';
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
-import { Menu, Submenu, MenuItem, MenuItemGroup } from 'element-ui';
+import {Menu, Submenu, MenuItem, MenuItemGroup} from 'element-ui';
 
 Vue.use(VueRouter);
 Vue.use(iView);

@@ -164,7 +164,7 @@
         const paddingLeft = `${this.fixed ? this.innerSidebarCollapsed ? this.sidebarCollapseWidth : this.sidebarWidth : 0}px`;
         return {
           paddingLeft,
-        }
+        };
       },
     },
     props: {

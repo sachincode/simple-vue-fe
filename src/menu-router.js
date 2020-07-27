@@ -107,8 +107,8 @@ async function getMenuRouterData(store, code) {
           },
         ],
       },
-    ]
-  }
+    ],
+  };
 
   function getSidebarMenu(code) {
     if (code === '***' || code === '###') {
@@ -126,7 +126,7 @@ async function getMenuRouterData(store, code) {
         path: '*',
         component: NotFoundPage,
         hide: true,
-      },])
+      }]);
       return all;
     }
     if (code == undefined) {
