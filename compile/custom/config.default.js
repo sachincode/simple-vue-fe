@@ -1,6 +1,6 @@
 /**
  * 默认配置
- * 本文件是 titan 配置文件，并非 webpack 配置文件
+ * 本文件是 此框架 配置文件，并非 webpack 配置文件
  * 具体请查看 doc/webpack 配置
  */
 module.exports = {
@@ -30,8 +30,7 @@ module.exports = {
    * eg: [/vue-codemirror/]
    */
   source_module: [
-    /vue-codemirror/,
-    /titan-image/
+    /vue-codemirror/
   ],
 
   
