@@ -147,6 +147,11 @@ async function getMenuRouterData(store, code) {
   }
 
   if (!config.useSSO) {
+    const user = {
+      age: 18,
+      sex: 'female',
+    };
+    console.log(user);
     return {
       headerMenuData,
       sidebarMenuData: getSidebarMenu(code),

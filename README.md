@@ -1,6 +1,7 @@
 # simple-vue-fe
 
 > A Vue.js project
+> 来源于公司内部的管理后台框架
 
 ## Build Setup
 
