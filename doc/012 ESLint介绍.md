@@ -56,7 +56,7 @@ let sayHello = (name) => `Hello, ${name}`,   // 正确
 ### 代码格式化工具
 
 #### VSCode 用户
-1. 查看项目根目录下有.eslintrc.js文件
+1. 查看项目根目录下有.eslintrc.js文件。如果没有，在项目根目录下新建.eslintrc.js文件，安装相关依赖。
 2. 点击 VSCode 侧边栏最下方的 扩展，下载 ESLint 插件，安装成功后重新加载 VSCode。
 ![](image/62eb196103.png)
 

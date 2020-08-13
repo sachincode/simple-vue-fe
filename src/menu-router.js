@@ -110,6 +110,20 @@ async function getMenuRouterData(store, code) {
     ],
   };
 
+  /**
+   * 路由初始化时（main.js）：
+   * code传入'***'，用于生成所有菜单的路由
+   * 
+   * 视图创建时(src/components/layout/index.vue)：
+   * top-bottom 模式，code传入'###'，用于获取全部的菜单，并且头部菜单有子菜单
+   * left-right 模式，code传入undefined，用于获取默认的选中顶部菜单的侧边栏菜单
+   * 
+   * left-right 模式顶部菜单选中时，
+   * code传入具体的顶部菜单code，获取当前顶部菜单的侧边栏菜单
+   * @param {*} code 
+   * @return {Object}
+   * @type {Object}
+   */
   function getSidebarMenu(code) {
     if (code === '***' || code === '###') {
       let all = [];
@@ -130,6 +144,7 @@ async function getMenuRouterData(store, code) {
       return all;
     }
     if (code == undefined) {
+      // left-right 模式初始化时，设置一个默认的选中顶部菜单，返回此菜单对应的侧边栏菜单
       let dcode = code;
       headerMenuData.forEach((item) => {
         if (item.select) {
@@ -147,11 +162,6 @@ async function getMenuRouterData(store, code) {
   }
 
   if (!config.useSSO) {
-    const user = {
-      age: 18,
-      sex: 'female',
-    };
-    console.log(user);
     return {
       headerMenuData,
       sidebarMenuData: getSidebarMenu(code),
@@ -185,6 +195,8 @@ async function getMenuRouterData(store, code) {
   };
 
   /**
+   * ⚠️ 警告：目前的SSO菜单结构只是按单侧边栏返回的，不能支持按选中顶部菜单和top-bottom 模式的菜单结构，如果需要请自行改造
+   * 
    * DataFactory 函数，对 SSO 源数据进行处理，用来实现
    * 1. updateHideItems: 隐藏不需要在侧边栏展示的路由
    * 2. updateLinkItems: 指定菜单的路由跳转类型, 第一个参数路由类型 a-link/router-link
@@ -199,7 +211,7 @@ async function getMenuRouterData(store, code) {
    */
   const factory = new DataFactory(store.state.ssoData);
   factory.updateHideItems([
-    '/menue2',
+    // '/menue2',
     '/menue2.3',
     '/menue2.1.1',
     '/menue3']);
