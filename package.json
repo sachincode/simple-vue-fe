@@ -11,7 +11,7 @@
     "build": "node compile/tt-server.js build"
   },
   "dependencies": {
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "element-ui": "^2.8.2",
     "iview": "3.0.0",
     "less": "^3.0.4",
