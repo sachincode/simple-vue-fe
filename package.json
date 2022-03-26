@@ -63,7 +63,7 @@
     "json-stringify-safe": "^5.0.1",
     "less-loader": "^4.0.5",
     "mini-css-extract-plugin": "^0.2.0",
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.6",
     "node-notifier": "^5.1.2",
     "node-sass": "^4.8.3",
     "open-browser-webpack-plugin": "0.0.5",
